@@ -1,0 +1,29 @@
+CREATE TABLE users (
+	user_id SERIAL PRIMARY KEY,
+	username varchar(50),
+	email varchar(50),
+	password varchar(50),
+	recepie text,
+	ifPublic boolean
+);
+
+CREATE TABLE recepies (
+	recipie_id SERIAL PRIMARY KEY ,
+	user_id int REFERENCES users(user_id),
+	recepies text
+);
+
+CREATE TABLE groceries (
+	grocery_id SERIAL PRIMARY KEY,
+	recipie_id int REFERENCES recepies(recipie_id),
+	user_id int REFERENCES users(user_id),
+  body text
+);
+
+CREATE TABLE occasions (
+	occasion_id SERIAL PRIMARY KEY,
+	user_id int REFERENCES users(user_id),
+	recipie_id int REFERENCES recepies(recipie_id),
+	occasion text
+);
+
